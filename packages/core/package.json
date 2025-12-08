@@ -1,0 +1,43 @@
+{
+  "name": "@verband/core",
+  "version": "0.1.0",
+  "description": "Transform flat grid layouts to CSS Flexbox, Grid, or Yoga layouts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "layout",
+    "grid",
+    "flexbox",
+    "css-grid",
+    "yoga",
+    "react-grid-layout",
+    "converter",
+    "transform"
+  ],
+  "author": "Eunsoo",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^2.1.0"
+  }
+}

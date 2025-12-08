@@ -1,0 +1,474 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Snapshot: 3-Column Grid > ascii 1`] = `
+"┌───────────────┬───────────────┬───────────────┐
+│       A       │       B       │       C       │
+│               │               │               │
+│               │               │               │
+├───────────────┴───────┬───────┴───────────────┤
+│           D           │           E           │
+└───────────────────────┴───────────────────────┘"
+`;
+
+exports[`Snapshot: 3-Column Grid > row-based 1`] = `
+[
+  {
+    "height": 2,
+    "items": [
+      {
+        "height": 2,
+        "id": "A",
+        "width": 4,
+        "x": 0,
+        "y": 0,
+      },
+      {
+        "height": 2,
+        "id": "B",
+        "width": 4,
+        "x": 4,
+        "y": 0,
+      },
+      {
+        "height": 2,
+        "id": "C",
+        "width": 4,
+        "x": 8,
+        "y": 0,
+      },
+    ],
+    "y": 0,
+  },
+  {
+    "height": 1,
+    "items": [
+      {
+        "height": 1,
+        "id": "D",
+        "width": 6,
+        "x": 0,
+        "y": 2,
+      },
+      {
+        "height": 1,
+        "id": "E",
+        "width": 6,
+        "x": 6,
+        "y": 2,
+      },
+    ],
+    "y": 2,
+  },
+]
+`;
+
+exports[`Snapshot: Asymmetric Layout > ascii 1`] = `
+"┌───────────────────────────────┬───────────────┐
+│               A               │       B       │
+│                               │               │
+│                               │               │
+│                               │               │
+│                               │               │
+├───────┬───────────────┬───────┴───────────────┤
+│   C   │       D       │           E           │
+└───────┴───────────────┴───────────────────────┘"
+`;
+
+exports[`Snapshot: Asymmetric Layout > row-based 1`] = `
+[
+  {
+    "height": 3,
+    "items": [
+      {
+        "height": 3,
+        "id": "A",
+        "width": 8,
+        "x": 0,
+        "y": 0,
+      },
+      {
+        "height": 3,
+        "id": "B",
+        "width": 4,
+        "x": 8,
+        "y": 0,
+      },
+    ],
+    "y": 0,
+  },
+  {
+    "height": 1,
+    "items": [
+      {
+        "height": 1,
+        "id": "C",
+        "width": 2,
+        "x": 0,
+        "y": 3,
+      },
+      {
+        "height": 1,
+        "id": "D",
+        "width": 4,
+        "x": 2,
+        "y": 3,
+      },
+      {
+        "height": 1,
+        "id": "E",
+        "width": 6,
+        "x": 6,
+        "y": 3,
+      },
+    ],
+    "y": 3,
+  },
+]
+`;
+
+exports[`Snapshot: Dashboard Layout > ascii 1`] = `
+"┌───────────────────────────────────────────────┐
+│                       H                       │
+├───────────┬───────────────────────────────────┤
+│     S     │                 M                 │
+│           │                                   │
+│           │                                   │
+│           │                                   │
+│           │                                   │
+├───────────┴───────────────────────────────────┤
+│                       F                       │
+└───────────────────────────────────────────────┘"
+`;
+
+exports[`Snapshot: Dashboard Layout > css-grid 1`] = `
+{
+  "container": {
+    "display": "grid",
+    "gap": "10px 10px",
+    "gridTemplateColumns": "repeat(12, 1fr)",
+    "gridTemplateRows": "50px 170px 50px",
+  },
+  "items": [
+    {
+      "id": "H",
+      "style": {
+        "gridColumn": "1 / span 12",
+        "gridRow": "1",
+      },
+    },
+    {
+      "id": "S",
+      "style": {
+        "gridColumn": "1 / span 3",
+        "gridRow": "2",
+      },
+    },
+    {
+      "id": "M",
+      "style": {
+        "gridColumn": "4 / span 9",
+        "gridRow": "2",
+      },
+    },
+    {
+      "id": "F",
+      "style": {
+        "gridColumn": "1 / span 12",
+        "gridRow": "3",
+      },
+    },
+  ],
+}
+`;
+
+exports[`Snapshot: Dashboard Layout > flexbox 1`] = `
+{
+  "container": {
+    "display": "flex",
+    "flexDirection": "column",
+    "gap": "10px",
+  },
+  "rows": [
+    {
+      "items": [
+        {
+          "id": "H",
+          "style": {
+            "flex": "12 1 0%",
+          },
+        },
+      ],
+      "style": {
+        "display": "flex",
+        "gap": "10px",
+        "minHeight": "50px",
+      },
+    },
+    {
+      "items": [
+        {
+          "id": "S",
+          "style": {
+            "flex": "3 1 0%",
+          },
+        },
+        {
+          "id": "M",
+          "style": {
+            "flex": "9 1 0%",
+          },
+        },
+      ],
+      "style": {
+        "display": "flex",
+        "gap": "10px",
+        "minHeight": "170px",
+      },
+    },
+    {
+      "items": [
+        {
+          "id": "F",
+          "style": {
+            "flex": "12 1 0%",
+          },
+        },
+      ],
+      "style": {
+        "display": "flex",
+        "gap": "10px",
+        "minHeight": "50px",
+      },
+    },
+  ],
+}
+`;
+
+exports[`Snapshot: Dashboard Layout > row-based 1`] = `
+[
+  {
+    "height": 1,
+    "items": [
+      {
+        "height": 1,
+        "id": "H",
+        "width": 12,
+        "x": 0,
+        "y": 0,
+      },
+    ],
+    "y": 0,
+  },
+  {
+    "height": 3,
+    "items": [
+      {
+        "height": 3,
+        "id": "S",
+        "width": 3,
+        "x": 0,
+        "y": 1,
+      },
+      {
+        "height": 3,
+        "id": "M",
+        "width": 9,
+        "x": 3,
+        "y": 1,
+      },
+    ],
+    "y": 1,
+  },
+  {
+    "height": 1,
+    "items": [
+      {
+        "height": 1,
+        "id": "F",
+        "width": 12,
+        "x": 0,
+        "y": 4,
+      },
+    ],
+    "y": 4,
+  },
+]
+`;
+
+exports[`Snapshot: Simple Layout > ascii 1`] = `
+"┌───────────────────────────────────────────────┐
+│                       a                       │
+│                                               │
+│                                               │
+├───────────────────────┬───────────────────────┤
+│           b           │           c           │
+│                       │                       │
+│                       │                       │
+└───────────────────────┴───────────────────────┘"
+`;
+
+exports[`Snapshot: Simple Layout > css-grid 1`] = `
+{
+  "container": {
+    "display": "grid",
+    "gap": "10px 10px",
+    "gridTemplateColumns": "repeat(12, 1fr)",
+    "gridTemplateRows": "110px 110px",
+  },
+  "items": [
+    {
+      "id": "a",
+      "style": {
+        "gridColumn": "1 / span 12",
+        "gridRow": "1",
+      },
+    },
+    {
+      "id": "b",
+      "style": {
+        "gridColumn": "1 / span 6",
+        "gridRow": "2",
+      },
+    },
+    {
+      "id": "c",
+      "style": {
+        "gridColumn": "7 / span 6",
+        "gridRow": "2",
+      },
+    },
+  ],
+}
+`;
+
+exports[`Snapshot: Simple Layout > flexbox 1`] = `
+{
+  "container": {
+    "display": "flex",
+    "flexDirection": "column",
+    "gap": "10px",
+  },
+  "rows": [
+    {
+      "items": [
+        {
+          "id": "a",
+          "style": {
+            "flex": "12 1 0%",
+          },
+        },
+      ],
+      "style": {
+        "display": "flex",
+        "gap": "10px",
+        "minHeight": "110px",
+      },
+    },
+    {
+      "items": [
+        {
+          "id": "b",
+          "style": {
+            "flex": "6 1 0%",
+          },
+        },
+        {
+          "id": "c",
+          "style": {
+            "flex": "6 1 0%",
+          },
+        },
+      ],
+      "style": {
+        "display": "flex",
+        "gap": "10px",
+        "minHeight": "110px",
+      },
+    },
+  ],
+}
+`;
+
+exports[`Snapshot: Simple Layout > row-based 1`] = `
+[
+  {
+    "height": 2,
+    "items": [
+      {
+        "height": 2,
+        "id": "a",
+        "width": 12,
+        "x": 0,
+        "y": 0,
+      },
+    ],
+    "y": 0,
+  },
+  {
+    "height": 2,
+    "items": [
+      {
+        "height": 2,
+        "id": "b",
+        "width": 6,
+        "x": 0,
+        "y": 2,
+      },
+      {
+        "height": 2,
+        "id": "c",
+        "width": 6,
+        "x": 6,
+        "y": 2,
+      },
+    ],
+    "y": 2,
+  },
+]
+`;
+
+exports[`Snapshot: Simple Layout > yoga 1`] = `
+{
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 12,
+            "flexShrink": 1,
+            "id": "a",
+          },
+        ],
+        "flexDirection": "row",
+        "gap": 10,
+        "height": 110,
+      },
+      {
+        "children": [
+          {
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 6,
+            "flexShrink": 1,
+            "id": "b",
+          },
+          {
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 6,
+            "flexShrink": 1,
+            "id": "c",
+          },
+        ],
+        "flexDirection": "row",
+        "gap": 10,
+        "height": 110,
+      },
+    ],
+    "flexDirection": "column",
+    "gap": 10,
+  },
+}
+`;
