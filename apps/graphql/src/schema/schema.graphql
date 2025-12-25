@@ -1,0 +1,261 @@
+type LayoutItem {
+  i: ID!
+  x: Int!
+  y: Int!
+  w: Int!
+  h: Int!
+  minW: Int
+  maxW: Int
+  minH: Int
+  maxH: Int
+  static: Boolean
+}
+
+input LayoutItemInput {
+  i: ID!
+  x: Int!
+  y: Int!
+  w: Int!
+  h: Int!
+  minW: Int
+  maxW: Int
+  minH: Int
+  maxH: Int
+  static: Boolean
+}
+
+type GapConfig {
+  row: Int!
+  column: Int!
+}
+
+input GapConfigInput {
+  row: Int!
+  column: Int!
+}
+
+type PaddingConfig {
+  top: Int!
+  right: Int!
+  bottom: Int!
+  left: Int!
+}
+
+input PaddingConfigInput {
+  top: Int!
+  right: Int!
+  bottom: Int!
+  left: Int!
+}
+
+type LayoutConfig {
+  cols: Int!
+  rowHeight: Int!
+  gap: GapConfig!
+  padding: PaddingConfig
+}
+
+input LayoutConfigInput {
+  cols: Int!
+  rowHeight: Int!
+  gap: GapConfigInput!
+  padding: PaddingConfigInput
+}
+
+type SavedLayout {
+  id: ID!
+  name: String!
+  description: String
+  items: [LayoutItem!]!
+  config: LayoutConfig!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type FlexboxContainerStyle {
+  display: String!
+  flexDirection: String!
+  gap: String!
+  padding: String
+}
+
+type FlexboxRowStyle {
+  display: String!
+  gap: String!
+  minHeight: String!
+}
+
+type FlexboxItemStyle {
+  flex: String!
+  minWidth: String
+  maxWidth: String
+  minHeight: String
+  maxHeight: String
+}
+
+type FlexboxItem {
+  id: ID!
+  style: FlexboxItemStyle!
+}
+
+type FlexboxRow {
+  style: FlexboxRowStyle!
+  items: [FlexboxItem!]!
+}
+
+type FlexboxLayout {
+  container: FlexboxContainerStyle!
+  rows: [FlexboxRow!]!
+}
+
+type CSSGridContainerStyle {
+  display: String!
+  gridTemplateRows: String!
+  gridTemplateColumns: String!
+  gap: String!
+  padding: String
+}
+
+type CSSGridItemStyle {
+  gridRow: String!
+  gridColumn: String!
+  minWidth: String
+  maxWidth: String
+  minHeight: String
+  maxHeight: String
+}
+
+type CSSGridItem {
+  id: ID!
+  style: CSSGridItemStyle!
+}
+
+type CSSGridLayout {
+  container: CSSGridContainerStyle!
+  items: [CSSGridItem!]!
+}
+
+scalar YogaDimension
+
+type YogaNode {
+  id: ID
+  flexDirection: String!
+  width: YogaDimension
+  height: YogaDimension
+  minWidth: Int
+  maxWidth: Int
+  minHeight: Int
+  maxHeight: Int
+  flexGrow: Int
+  flexShrink: Int
+  flexBasis: YogaDimension
+  gap: Int
+  padding: PaddingConfig
+  children: [YogaNode!]
+}
+
+type YogaLayout {
+  root: YogaNode!
+}
+
+input CreateLayoutInput {
+  name: String!
+  description: String
+  items: [LayoutItemInput!]!
+  config: LayoutConfigInput!
+}
+
+input UpdateLayoutInput {
+  name: String
+  description: String
+  items: [LayoutItemInput!]
+  config: LayoutConfigInput
+}
+
+type DeleteLayoutResult {
+  success: Boolean!
+  id: ID!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type LayoutEdge {
+  node: SavedLayout!
+  cursor: String!
+}
+
+type LayoutConnection {
+  edges: [LayoutEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type Query {
+  """
+  Get current authenticated user
+  """
+  me: User
+
+  """
+  Get paginated layouts
+  """
+  layouts(first: Int, after: String, last: Int, before: String): LayoutConnection!
+
+  """
+  Get a specific layout by ID
+  """
+  layout(id: ID!): SavedLayout
+
+  """
+  Convert a layout to Flexbox format
+  """
+  layoutToFlexbox(id: ID!): FlexboxLayout
+
+  """
+  Convert a layout to CSS Grid format
+  """
+  layoutToCSSGrid(id: ID!): CSSGridLayout
+
+  """
+  Convert a layout to Yoga format
+  """
+  layoutToYoga(id: ID!): YogaLayout
+}
+
+type Mutation {
+  """
+  Login and get JWT token
+  """
+  login(email: String!, password: String!): AuthPayload!
+
+  """
+  Create a new layout (requires authentication)
+  """
+  createLayout(input: CreateLayoutInput!): SavedLayout!
+
+  """
+  Update an existing layout
+  """
+  updateLayout(id: ID!, input: UpdateLayoutInput!): SavedLayout
+
+  """
+  Delete a layout
+  """
+  deleteLayout(id: ID!): DeleteLayoutResult!
+}
