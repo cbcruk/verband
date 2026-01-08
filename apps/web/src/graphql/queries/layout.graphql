@@ -1,0 +1,35 @@
+query Layout($id: ID!) {
+  layout(id: $id) {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+    config {
+      cols
+      rowHeight
+      gap {
+        row
+        column
+      }
+      padding {
+        top
+        right
+        bottom
+        left
+      }
+    }
+    items {
+      i
+      x
+      y
+      w
+      h
+      minW
+      maxW
+      minH
+      maxH
+      static
+    }
+  }
+}

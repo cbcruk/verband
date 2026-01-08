@@ -35,12 +35,12 @@ describe('Query', () => {
       expect(result?.name).toBe('Dashboard Layout')
     })
 
-    it('should return undefined for non-existent id', () => {
+    it('should return null for non-existent id', () => {
       const context = createTestContextWithData()
 
       const result = resolvers.Query.layout({}, { id: 'invalid' }, context)
 
-      expect(result).toBeUndefined()
+      expect(result).toBeNull()
     })
   })
 

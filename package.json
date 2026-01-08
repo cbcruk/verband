@@ -5,9 +5,12 @@
   "type": "module",
   "packageManager": "pnpm@9.7.0",
   "scripts": {
+    "dev:graphql": "pnpm --filter @verband/graphql dev",
+    "dev:web": "pnpm --filter @verband/web dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "type-check": "pnpm -r type-check",
+    "codegen": "pnpm --filter @verband/graphql codegen && pnpm --filter @verband/web codegen",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

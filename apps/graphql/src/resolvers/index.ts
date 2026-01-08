@@ -1,11 +1,6 @@
 import { GraphQLError, GraphQLScalarType, Kind } from 'graphql'
 import { LayoutConverter } from '@verband/core'
-import type { Context } from '../types/context'
-import type {
-  CreateLayoutInput,
-  UpdateLayoutInput,
-  PaginationArgs,
-} from '../data-sources/layout-store'
+import type { Resolvers } from '../types/generated'
 import { CreateLayoutInputSchema, UpdateLayoutInputSchema, validate } from '../validations/layout'
 import { createToken, requireAuth } from '../utils/auth'
 
@@ -43,21 +38,30 @@ const YogaDimension = new GraphQLScalarType({
   },
 })
 
-export const resolvers = {
+export const resolvers: Resolvers = {
   YogaDimension,
+  SavedLayout: {
+    createdAt: (parent) => parent.createdAt.toISOString(),
+    updatedAt: (parent) => parent.updatedAt.toISOString(),
+  },
   Query: {
-    me: (_: unknown, __: unknown, { dataSources, userId }: Context) => {
+    me: (_, __, { dataSources, userId }) => {
       if (!userId) return null
 
-      return dataSources.userStore.findById(userId)
+      return dataSources.userStore.findById(userId) ?? null
     },
-    layouts: (_: unknown, args: PaginationArgs, { dataSources }: Context) => {
-      return dataSources.layoutStore.findPaginated(args)
+    layouts: (_, args, { dataSources }) => {
+      return dataSources.layoutStore.findPaginated({
+        first: args.first ?? undefined,
+        after: args.after ?? undefined,
+        last: args.last ?? undefined,
+        before: args.before ?? undefined,
+      })
     },
-    layout: (_: unknown, { id }: { id: string }, { dataSources }: Context) => {
-      return dataSources.layoutStore.findById(id)
+    layout: (_, { id }, { dataSources }) => {
+      return dataSources.layoutStore.findById(id) ?? null
     },
-    layoutToFlexbox: (_: unknown, { id }: { id: string }, { dataSources }: Context) => {
+    layoutToFlexbox: (_, { id }, { dataSources }) => {
       const layout = dataSources.layoutStore.findById(id)
 
       if (!layout) notFoundError(id)
@@ -66,7 +70,7 @@ export const resolvers = {
 
       return converter.toFlexbox()
     },
-    layoutToCSSGrid: (_: unknown, { id }: { id: string }, { dataSources }: Context) => {
+    layoutToCSSGrid: (_, { id }, { dataSources }) => {
       const layout = dataSources.layoutStore.findById(id)
 
       if (!layout) notFoundError(id)
@@ -75,7 +79,7 @@ export const resolvers = {
 
       return converter.toCSSGrid()
     },
-    layoutToYoga: (_: unknown, { id }: { id: string }, { dataSources }: Context) => {
+    layoutToYoga: (_, { id }, { dataSources }) => {
       const layout = dataSources.layoutStore.findById(id)
 
       if (!layout) notFoundError(id)
@@ -86,11 +90,7 @@ export const resolvers = {
     },
   },
   Mutation: {
-    login: (
-      _: unknown,
-      { email, password }: { email: string; password: string },
-      { dataSources }: Context
-    ) => {
+    login: (_, { email, password }, { dataSources }) => {
       const user = dataSources.userStore.findByEmail(email)
 
       if (!user || user.password !== password) {
@@ -101,22 +101,14 @@ export const resolvers = {
 
       return { token, user }
     },
-    createLayout: (
-      _: unknown,
-      { input }: { input: CreateLayoutInput },
-      { dataSources, userId }: Context
-    ) => {
+    createLayout: (_, { input }, { dataSources, userId }) => {
       requireAuth(userId)
 
       const validatedInput = validate(CreateLayoutInputSchema, input)
 
       return dataSources.layoutStore.create(validatedInput)
     },
-    updateLayout: (
-      _: unknown,
-      { id, input }: { id: string; input: UpdateLayoutInput },
-      { dataSources, userId }: Context
-    ) => {
+    updateLayout: (_, { id, input }, { dataSources, userId }) => {
       requireAuth(userId)
 
       const validatedInput = validate(UpdateLayoutInputSchema, input)
@@ -127,7 +119,7 @@ export const resolvers = {
 
       return result
     },
-    deleteLayout: (_: unknown, { id }: { id: string }, { dataSources, userId }: Context) => {
+    deleteLayout: (_, { id }, { dataSources, userId }) => {
       requireAuth(userId)
 
       const success = dataSources.layoutStore.delete(id)

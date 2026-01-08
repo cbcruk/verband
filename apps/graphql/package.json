@@ -8,7 +8,9 @@
     "start": "tsx src/index.ts",
     "test": "vitest",
     "test:run": "vitest run",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch"
   },
   "dependencies": {
     "@apollo/server": "^4.11.0",
@@ -19,6 +21,9 @@
     "zod": "^4.2.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/typescript": "^5.0.7",
+    "@graphql-codegen/typescript-resolvers": "^5.1.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.0.0",
     "tsx": "^4.19.0",

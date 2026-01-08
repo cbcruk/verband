@@ -1,0 +1,22 @@
+query LayoutToCSSGrid($id: ID!) {
+  layoutToCSSGrid(id: $id) {
+    container {
+      display
+      gridTemplateRows
+      gridTemplateColumns
+      gap
+      padding
+    }
+    items {
+      id
+      style {
+        gridRow
+        gridColumn
+        minWidth
+        maxWidth
+        minHeight
+        maxHeight
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+query Layouts($first: Int, $after: String) {
+  layouts(first: $first, after: $after) {
+    edges {
+      cursor
+      node {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        config {
+          cols
+          rowHeight
+          gap {
+            row
+            column
+          }
+        }
+        items {
+          i
+          x
+          y
+          w
+          h
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
+  }
+}

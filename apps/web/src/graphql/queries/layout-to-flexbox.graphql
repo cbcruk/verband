@@ -1,0 +1,27 @@
+query LayoutToFlexbox($id: ID!) {
+  layoutToFlexbox(id: $id) {
+    container {
+      display
+      flexDirection
+      gap
+      padding
+    }
+    rows {
+      style {
+        display
+        gap
+        minHeight
+      }
+      items {
+        id
+        style {
+          flex
+          minWidth
+          maxWidth
+          minHeight
+          maxHeight
+        }
+      }
+    }
+  }
+}

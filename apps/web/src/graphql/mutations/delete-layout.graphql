@@ -1,0 +1,6 @@
+mutation DeleteLayout($id: ID!) {
+  deleteLayout(id: $id) {
+    success
+    id
+  }
+}

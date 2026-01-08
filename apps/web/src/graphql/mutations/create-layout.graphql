@@ -1,0 +1,24 @@
+mutation CreateLayout($input: CreateLayoutInput!) {
+  createLayout(input: $input) {
+    id
+    name
+    description
+    createdAt
+    updatedAt
+    config {
+      cols
+      rowHeight
+      gap {
+        row
+        column
+      }
+    }
+    items {
+      i
+      x
+      y
+      w
+      h
+    }
+  }
+}
