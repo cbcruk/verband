@@ -1,6 +1,6 @@
 {
   "name": "verband",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Transform flat grid layouts to CSS Flexbox, Grid, or Yoga layouts",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -34,6 +34,15 @@
   ],
   "author": "Eunsoo",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbcruk/verband.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/cbcruk/verband/issues"
+  },
+  "homepage": "https://github.com/cbcruk/verband#readme",
   "devDependencies": {
     "@types/node": "^20.0.0",
     "tsup": "^8.0.0",
